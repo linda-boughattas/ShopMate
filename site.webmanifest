@@ -1,5 +1,5 @@
 {
-    "name":"ShopMate",
+    "name":"Shop Mate",
     "short_name":"ShopMate",
     "icons":[
         {"src":"/assets/img/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},
