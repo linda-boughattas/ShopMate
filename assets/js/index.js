@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
     databaseURL: "https://playground-a5a93-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -43,5 +43,10 @@ function appendItemToShoppingList(input){
     newEl.textContent=itemValue
 
     shoppingListEl.append(newEl)
+
+    newEl.addEventListener("dblclick", function(){
+        let pathOfTheItemInDatabase = ref(database, `/shoppingList/${itemID}`)
+        remove(pathOfTheItemInDatabase)
+    })
 
 }
