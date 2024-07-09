@@ -13,17 +13,29 @@ const inputFieldEl = document.getElementById("input-field")
 const addButtonEl = document.getElementById("add-button")
 const shoppingListEl = document.getElementById("shopping-list")
 
-addButtonEl.addEventListener("click", function() {
+function addItemToList(){
     let inputValue = inputFieldEl.value
     clearInputFielsEl()
     push(shoppingListInDB, inputValue)
+}
+addButtonEl.addEventListener("click", function() {
+    addItemToList()
+})
+
+inputFieldEl.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        addItemToList()
+    }
 })
 
 onValue(shoppingListInDB, function(snapshot){
+    if(snapshot.exists()){
     let itemsArray=Object.entries(snapshot.val())
     clearShoppingList()
     for(let i=0; i<itemsArray.length; i++){
         appendItemToShoppingList(itemsArray[i])
+    }} else {
+        shoppingListEl.innerHTML =""
     }
 })
 
